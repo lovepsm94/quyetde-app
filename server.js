@@ -6,7 +6,7 @@ const fs = require('fs');
 const mongoose = require('mongoose')
 const QuestionModel = require('./models/question')
 
-mongoose.connect('mongodb://localhost:27017/quyetde', (err) => {
+mongoose.connect('mongodb+srv://admin:web42fullstack@cluster0.afowa.mongodb.net/quyetde?retryWrites=true&w=majority', (err) => {
     if (err) throw err
     console.log('mongodb success');
 });
@@ -72,6 +72,6 @@ app.post('/question', async (req, res) => {
     }
 })
 
-app.listen(3000, (err) => {
+app.listen(process.env.PORT || 3000, (err) => {
     if (err) throw err;
 })
