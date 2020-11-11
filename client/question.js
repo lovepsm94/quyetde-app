@@ -1,5 +1,5 @@
 $.ajax({
-    url: "http://localhost:3000/question",
+    url: "https://test1234312312.herokuapp.com/question",
     type: "POST",
     data: { questionId: window.location.pathname.slice(10) },
     success: (res) => {
