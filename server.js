@@ -27,15 +27,13 @@ app.get('/question/:questionId', (req, res) => {
     const pathFile = path.resolve(__dirname, './client/question.html')
     res.sendFile(pathFile)
 })
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
 app.get('/random-question', async (req, res) => {
-    const query = {
-        state: 'OK',
-        rnd: {
-            $gte: Math.random()
-        }
-    };
-    const randomQuestion = await QuestionModel.findOne(query)
+    const questions = await QuestionModel.find({})
+    const randomQuestion = questions[getRandomInt(questions.length)]
     res.send(randomQuestion)
 })
 
