@@ -1,8 +1,7 @@
 document.querySelector('#search-input').addEventListener('input', () => {
     const inputText = document.querySelector('#search-input').value.trim()
     if (inputText.length) {
-        document.querySelector('.result').innerHTML = `<img src="/img/Dual Ball-1s-200px.gif" style="display: none" id="loading-img">`
-        document.querySelector('#loading-img').style.display = 'block'
+        document.querySelector('.result').innerHTML = `<img src="/img/Dual Ball-1s-200px.gif"  id="loading-img">`
         $.ajax({
             url: "https://test1234312312.herokuapp.com/search-question",
             type: "POST",
@@ -20,8 +19,7 @@ document.querySelector('#search-input').addEventListener('input', () => {
                     `
                 }).join('')
 
-                document.querySelector('#loading-img').style.display = 'none'
-                document.querySelector('.result').insertAdjacentHTML('beforeend', searchResultsDom)
+                document.querySelector('.result').innerHTML = searchResultsDom
 
 
             },
