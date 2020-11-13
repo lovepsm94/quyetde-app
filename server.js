@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 const mongoose = require('mongoose')
 const QuestionModel = require('./models/question')
 
@@ -12,7 +11,8 @@ mongoose.connect('mongodb+srv://admin:web42fullstack@cluster0.afowa.mongodb.net/
 });
 
 
-app.use(express.static('client'));
+app.use(express.static('client'))
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
@@ -23,18 +23,22 @@ app.get('/ask', (req, res) => {
     const pathFile = path.resolve(__dirname, './client/create-question.html')
     res.sendFile(pathFile)
 })
+
+app.get('/search', (req, res) => {
+    const pathFile = path.resolve(__dirname, './client/search.html')
+    res.sendFile(pathFile)
+})
 app.get('/question/:questionId', (req, res) => {
     const pathFile = path.resolve(__dirname, './client/question.html')
     res.sendFile(pathFile)
 })
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
-
 app.get('/random-question', async (req, res) => {
-    const questions = await QuestionModel.find({})
-    const randomQuestion = questions[getRandomInt(questions.length)]
-    res.send(randomQuestion)
+    const randomQuestion = await QuestionModel.aggregate([{ $sample: { size: 1 } }])
+    if (randomQuestion.length) {
+        res.send({ ...randomQuestion[0], success: 1 })
+    } else {
+        res.send({ success: 0 })
+    }
 })
 
 app.get('*', (req, res) => {
@@ -67,11 +71,19 @@ app.post('/question', async (req, res) => {
             await QuestionModel.updateOne({ _id: questionId }, foundQuestion, () => res.send(foundQuestion))
         } else if (downVote) {
             foundQuestion.noCount++
+            console.log(questionId)
             QuestionModel.findByIdAndUpdate(questionId, foundQuestion, () => res.send(foundQuestion))
         } else return res.send(foundQuestion)
     }
 })
-
+app.post('/search-question', async (req, res) => {
+    const { content } = req.body
+    const reContent = new RegExp(content, 'i')
+    const searchResults = await QuestionModel.find({ content: { $regex: reContent } })
+    if (searchResults) {
+        res.send(searchResults)
+    } else {res.send({ success: 0})}
+})
 app.listen(process.env.PORT || 3000, (err) => {
     if (err) throw err;
 })
