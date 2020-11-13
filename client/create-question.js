@@ -4,11 +4,11 @@ form.addEventListener('submit', (e) => {
     const content = form.textArea.value.trim();
     if (content) {
         $.ajax({
-            url: 'http://localhost:3000/create-question',
+            url: 'https://test1234312312.herokuapp.com/create-question',
             type: 'POST',
             data: { content },
             success: (res) => {
-                location.replace(`http://localhost:3000/question/${res.data.id}`)
+                location.replace(`https://test1234312312.herokuapp.com/question/${res.data.id}`)
             },
             error: (err) => console.log(err)
         })

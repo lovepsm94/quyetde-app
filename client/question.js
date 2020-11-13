@@ -1,5 +1,5 @@
 $.ajax({
-    url: "http://localhost:3000/question",
+    url: "https://test1234312312.herokuapp.com/question",
     type: "POST",
     data: { questionId: window.location.pathname.slice(10) },
     success: (res) => {
@@ -40,7 +40,7 @@ const questionHtml = `
             </div>
         </div>
         <div class="d-flex justify-content-center mt-4">
-            <button class="next-question-btn btn btn-info" onclick="location.replace('http://localhost:3000');">Xem câu hỏi khác</button>
+            <button class="next-question-btn btn btn-info" onclick="location.replace('https://test1234312312.herokuapp.com');">Xem câu hỏi khác</button>
         </div>
         `
  
