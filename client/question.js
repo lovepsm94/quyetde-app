@@ -13,15 +13,15 @@ function renderPage(res) {
     let percentYes, percentNo
     yesCount + noCount !== 0 ? percentYes = (yesCount * 100 / (yesCount + noCount)).toFixed() : percentYes = 50
     percentNo = 100 - percentYes
-    setTimeout(() => {
-        $('.container').html(questionHtml)
-        $('#content').text(`${res.content}`)
-        $('#total-votes').text(`${res.yesCount + res.noCount} votes`)
-        $('#percent-yes-votes').text(`${percentYes}%`)
-        $('#yes-progress').css('width', `${percentYes}%`)
-        $('#percent-no-votes').text(`${percentNo}%`)
-        $('#no-progress').css('width', `${percentNo}%`)
-    }, 500)
+
+    $('.container').html(questionHtml)
+    $('#content').text(`${res.content}`)
+    $('#total-votes').text(`${res.yesCount + res.noCount} votes`)
+    $('#percent-yes-votes').text(`${percentYes}%`)
+    $('#yes-progress').css('width', `${percentYes}%`)
+    $('#percent-no-votes').text(`${percentNo}%`)
+    $('#no-progress').css('width', `${percentNo}%`)
+
 
 }
 const questionHtml = `
@@ -43,4 +43,3 @@ const questionHtml = `
             <button class="next-question-btn btn btn-info" onclick="location.replace('https://test1234312312.herokuapp.com');">Xem câu hỏi khác</button>
         </div>
         `
- 

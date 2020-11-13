@@ -19,10 +19,10 @@ document.querySelector('#search-input').addEventListener('input', () => {
                         
                     `
                 }).join('')
-                setTimeout(() => { 
-                    document.querySelector('#loading-img').style.display = 'none'
-                    document.querySelector('.result').insertAdjacentHTML('beforeend', searchResultsDom)
-                }, 500)
+
+                document.querySelector('#loading-img').style.display = 'none'
+                document.querySelector('.result').insertAdjacentHTML('beforeend', searchResultsDom)
+
 
             },
             error: (err) => console.log(err)

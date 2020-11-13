@@ -5,11 +5,11 @@ function renderPage() {
         url: "https://test1234312312.herokuapp.com/random-question",
         type: "GET",
         success: (res) => {
-            setTimeout(() => {
-                $('#content').html(`${res.content}`)
-                questionId = res._id
-                document.querySelector('.result-btn').disabled = false
-            }, 500)
+
+            $('#content').html(`${res.content}`)
+            questionId = res._id
+            document.querySelector('.result-btn').disabled = false
+
 
         },
         error: (err) => console.log(err)
@@ -45,4 +45,4 @@ function downVote() {
         error: (err) => console.log(err)
     })
 }
- 
+
