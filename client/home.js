@@ -2,7 +2,7 @@ let questionId = undefined
 document.querySelector('.result-btn').disabled = true
 function renderPage() {
     $.ajax({
-        url: "https://test1234312312.herokuapp.com/random-question",
+        url: "http://localhost:3000/random-question",
         type: "GET",
         success: (res) => {
             setTimeout(() => {
@@ -17,32 +17,32 @@ function renderPage() {
 }
 renderPage()
 document.querySelector('.result-btn').addEventListener('click', () => {
-    location.replace(`https://test1234312312.herokuapp.com/question/${questionId}`)
+    location.replace(`http://localhost:3000/question/${questionId}`)
 })
 document.querySelector('.next-question-btn').addEventListener('click', () => {
-    location.replace('https://test1234312312.herokuapp.com')
+    location.replace('http://localhost:3000')
 })
 
 function upVote() {
     $.ajax({
-        url: "https://test1234312312.herokuapp.com/question",
+        url: "http://localhost:3000/question",
         type: "POST",
         data: { questionId, upVote: 1 },
         success: (res) => {
-            location.replace(`https://test1234312312.herokuapp.com/question/${questionId}`)
+            location.replace(`http://localhost:3000/question/${questionId}`)
         },
         error: (err) => console.log(err)
     })
 }
 function downVote() {
     $.ajax({
-        url: "https://test1234312312.herokuapp.com/question",
+        url: "http://localhost:3000/question",
         type: "POST",
         data: { questionId, downVote: 1 },
         success: (res) => {
-            location.replace(`https://test1234312312.herokuapp.com/question/${questionId}`)
+            location.replace(`http://localhost:3000/question/${questionId}`)
         },
         error: (err) => console.log(err)
     })
 }
-
+ 
