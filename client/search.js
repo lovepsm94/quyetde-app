@@ -13,8 +13,8 @@ document.querySelector('#search-input').addEventListener('input', () => {
                     return `
                     <li class="list-group-item text-break" style="cursor: pointer;" onclick="location.replace('https://test1234312312.herokuapp.com/question/${_id}')">
                         ${content}
-                        <span class="badge badge-success badge-pill">${yesCount}</span>
                         <span class="badge badge-danger badge-pill">${noCount}</span>
+                        <span class="badge badge-primary badge-pill">${yesCount}</span>
                     </li>                     
                         
                     `
