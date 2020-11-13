@@ -1,6 +1,7 @@
 document.querySelector('#search-input').addEventListener('input', () => {
     const inputText = document.querySelector('#search-input').value.trim()
     if (inputText.length) {
+        document.querySelector('.result').innerHTML = ''
         document.querySelector('#loading-img').style.display = 'block'
         $.ajax({
             url: "https://test1234312312.herokuapp.com/search-question",
